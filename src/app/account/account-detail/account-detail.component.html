@@ -1,0 +1,15 @@
+<h1 class="text-center">Account information</h1>
+<hr>
+
+  <h3>{{ account?.firstname }} {{ account?.lastname }}</h3>
+  <label>Email</label>
+  <p>{{ account?.email }}</p>
+  <label>Username</label>
+  <p class="bg-primary">{{ account?.username }}</p>
+  <label>Password</label>
+  <p class="bg-primary">******</p>
+  <button
+    class="btn btn-primary"
+    (click)="onEdit()">
+    Edit
+  </button>

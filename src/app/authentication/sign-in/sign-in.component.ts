@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../shared/services/auth.service';
-import { User } from '../../shared/models/User';
+import { User } from '../../shared/models/user';
 import { Router } from '@angular/router';
+import { UserService } from '../../shared/services/user.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -11,10 +12,12 @@ import { Router } from '@angular/router';
 })
 export class SignInComponent implements OnInit {
   loginForm: FormGroup;
+  apiResponse;
   user: User;
 
   constructor(private router: Router,
-              private authService: AuthService) { }
+              private authService: AuthService,
+              private userService: UserService) { }
 
   ngOnInit() {
     this.loginForm = new FormGroup({
@@ -27,7 +30,10 @@ export class SignInComponent implements OnInit {
     this.authService.signIn(this.loginForm.value)
       .subscribe(
         response => {
-          this.authService.setToken(response);
+          this.apiResponse = response;
+          this.authService.setToken(this.apiResponse.token);
+          this.userService.setCurrentUser(this.apiResponse.user);
+          this.router.navigate(['/account']);
           console.log(this.authService.isAuthenticated());
         }, error => {
           console.log(error);

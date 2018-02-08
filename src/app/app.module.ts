@@ -10,6 +10,11 @@ import { SignInComponent } from './authentication/sign-in/sign-in.component';
 import { SignUpComponent } from './authentication/sign-up/sign-up.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { AccountComponent } from './account/account.component';
+import { UserService } from './shared/services/user.service';
+import { AuthGuard } from './shared/guards/auth.guard';
+import { AccountEditComponent } from './account/account-edit/account-edit.component';
+import { AccountDetailComponent } from './account/account-detail/account-detail.component';
 
 
 @NgModule({
@@ -18,7 +23,10 @@ import { HttpClientModule } from '@angular/common/http';
     HeaderComponent,
     AuthenticationComponent,
     SignInComponent,
-    SignUpComponent
+    SignUpComponent,
+    AccountComponent,
+    AccountEditComponent,
+    AccountDetailComponent
   ],
   imports: [
     AppRoutingModule,
@@ -26,7 +34,7 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, UserService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
