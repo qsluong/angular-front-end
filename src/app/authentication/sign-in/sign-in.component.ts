@@ -37,6 +37,7 @@ export class SignInComponent implements OnInit {
           console.log(this.authService.isAuthenticated());
         }, error => {
           console.log(error);
+          if (error.status === 0 ) console.log('Server is not responding');
         });
   }
 

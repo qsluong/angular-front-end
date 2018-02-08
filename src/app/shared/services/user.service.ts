@@ -7,7 +7,7 @@ import { AuthService } from './auth.service';
 
 @Injectable()
 export class UserService {
-  private server = environment.localhost;
+  private server = environment.serverUrl;
   private currentUser: User;
   userChanged: Subject<User> = new Subject<User>();
 

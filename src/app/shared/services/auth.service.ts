@@ -5,7 +5,7 @@ import { User } from '../models/user';
 
 @Injectable()
 export class AuthService {
-  private server = environment.localhost;
+  private server = environment.serverUrl;
   private headers: HttpHeaders;
   private token: string;
 
@@ -14,8 +14,7 @@ export class AuthService {
   setToken(token) {
     this.token = token;
     this.headers = new HttpHeaders();
-    this.headers = this.headers.append('Authorization', this.token);
-    console.log(this.headers);
+    this.headers = this.headers.append('Authorization', 'Bearer ' + this.token);
   }
 
   getToken() {
