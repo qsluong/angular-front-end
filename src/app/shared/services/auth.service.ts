@@ -6,19 +6,14 @@ import { User } from '../models/user';
 @Injectable()
 export class AuthService {
   private server = environment.serverUrl;
-  private headers: HttpHeaders;
+  private headers: HttpHeaders = new HttpHeaders({'Content-Type' : 'application/json'});
   private token: string;
 
   constructor(private Http: HttpClient) {}
 
   setToken(token) {
     this.token = token;
-    this.headers = new HttpHeaders();
     this.headers = this.headers.append('Authorization', 'Bearer ' + this.token);
-  }
-
-  getToken() {
-    return this.token;
   }
 
   getHeaders() {
