@@ -18,6 +18,10 @@ export class UserService {
     return this.currentUser;
   }
 
+  removeUser() {
+    this.currentUser = null;
+  }
+
   setCurrentUser(user: User) {
     this.currentUser = user;
     this.userChanged.next(this.currentUser);

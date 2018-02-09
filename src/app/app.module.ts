@@ -15,7 +15,11 @@ import { UserService } from './shared/services/user.service';
 import { AuthGuard } from './shared/guards/auth.guard';
 import { AccountEditComponent } from './account/account-edit/account-edit.component';
 import { AccountDetailComponent } from './account/account-detail/account-detail.component';
-
+import { CollectionComponent } from './collection/collection.component';
+import { CollectionService } from './shared/services/collection.service';
+import { CollectionAddComponent } from './collection/collection-add/collection-add.component';
+import { CollectionListComponent } from './collection/collection-list/collection-list.component';
+import { CollectionDetailComponent } from './collection/collection-detail/collection-detail.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +30,11 @@ import { AccountDetailComponent } from './account/account-detail/account-detail.
     SignUpComponent,
     AccountComponent,
     AccountEditComponent,
-    AccountDetailComponent
+    AccountDetailComponent,
+    CollectionComponent,
+    CollectionAddComponent,
+    CollectionListComponent,
+    CollectionDetailComponent
   ],
   imports: [
     AppRoutingModule,
@@ -34,7 +42,7 @@ import { AccountDetailComponent } from './account/account-detail/account-detail.
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [AuthService, UserService, AuthGuard],
+  providers: [AuthService, CollectionService, UserService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

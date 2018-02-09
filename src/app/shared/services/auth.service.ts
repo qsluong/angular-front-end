@@ -2,6 +2,7 @@ import { environment } from '../../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from '../models/user';
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class AuthService {
@@ -13,7 +14,11 @@ export class AuthService {
 
   setToken(token) {
     this.token = token;
-    this.headers = this.headers.append('Authorization', 'Bearer ' + this.token);
+    this.headers = this.headers.set('Authorization', 'Bearer ' + this.token);
+  }
+
+  deleteToken() {
+    this.token = null;
   }
 
   getHeaders() {
