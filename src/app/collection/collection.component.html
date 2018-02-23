@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-md-12">
+    <h1 class="text-center">Collections</h1>
+    <hr>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+
+    <div class="ml-auto">
+      <button
+        class="btn btn-primary btn-block"
+        type="button"
+        data-toggle="collapse"
+        data-target="#addCollection"
+        aria-expanded="false"
+        aria-controls="addCollection">Add</button>
+    </div>
+
+    <div class="collapse" id="addCollection">
+      <hr>
+      <div class="card card-body bg-light">
+        <app-collection-add></app-collection-add>
+      </div>
+    </div>
+    <hr>
+
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card-columns">
+      <app-collection-list
+        *ngFor="let col of collections"
+        [collection]="col"></app-collection-list>
+    </div>
+  </div>
+</div>
