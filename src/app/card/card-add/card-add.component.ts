@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { CardService } from '../../shared/services/card.service';
 import { Card } from '../../shared/models/card';
 import { CollectionService } from '../../shared/services/collection.service';
