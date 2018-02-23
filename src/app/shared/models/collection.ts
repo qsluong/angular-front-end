@@ -1,4 +1,5 @@
 export class Collection {
-  constructor(public name: string,
+  constructor(public _id: number,
+              public name: string,
               public createdByUser: string) {}
 }

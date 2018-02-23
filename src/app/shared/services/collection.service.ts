@@ -35,7 +35,7 @@ export class CollectionService {
 
   updateCollections(collection: Collection) {
     this.collections.push(collection);
-    this.collectionChanged.next(this.collections);
+    this.collectionChanged.next(this.collections.slice());
   }
 
   createCollection(collection: Collection) {
