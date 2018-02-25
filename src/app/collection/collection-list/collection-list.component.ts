@@ -22,4 +22,20 @@ export class CollectionListComponent implements OnInit {
     this.router.navigate(['/collection', collection.name]);
   }
 
+  onEdit(collection: Collection) {
+    this.collectionService.setCollection(collection);
+    this.router.navigate(['/collection', 'edit']);
+  }
+
+  onDelete(collection: Collection) {
+    this.collectionService.deleteCollection(collection)
+      .subscribe(response => {
+        console.log(response);
+        this.collectionService.getCollections()
+          .subscribe(newResponse => {
+            this.collectionService.setCollections(newResponse);
+          });
+      });
+  }
+
 }

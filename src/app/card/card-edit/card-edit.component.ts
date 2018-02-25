@@ -33,12 +33,12 @@ export class CardEditComponent implements OnInit {
       transliteration: this.editCardForm.value.transliteration,
       collectionId: this.collectionService.getCollection()._id
     };
-    console.log(this.editedCard);
     this.cardService.updateCard(this.editedCard)
-      .subscribe(response => {
-        console.log(response);
-        this.router.navigate(['/collection/' + this.collectionService.getCollection().name]);
-      });
+      .subscribe(
+        response => console.log(response),
+        error => console.log(error),
+        () => this.router.navigate(['/collection/' + this.collectionService.getCollection().name])
+      );
   }
 
   onCancel() {

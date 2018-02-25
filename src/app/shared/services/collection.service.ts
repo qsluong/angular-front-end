@@ -11,7 +11,7 @@ export class CollectionService {
   private collection: Collection;
   private collections: Collection[];
 
-  public collectionChanged: Subject<Collection[]> = new Subject<Collection[]>();
+  public collectionsChanged: Subject<Collection[]> = new Subject<Collection[]>();
 
   constructor(private authService: AuthService,
               private Http: HttpClient) {
@@ -25,20 +25,29 @@ export class CollectionService {
     this.collection = collection;
   }
 
-  getCollections() {
-    return this.Http.get<Collection[]>(this.server + 'collection', { headers: this.authService.getHeaders() });
-  }
-
   setCollections(collection: Collection[]) {
     this.collections = collection;
+    this.collectionsChanged.next(this.collections.slice());
   }
 
   updateCollections(collection: Collection) {
     this.collections.push(collection);
-    this.collectionChanged.next(this.collections.slice());
+    this.collectionsChanged.next(this.collections.slice());
+  }
+
+  getCollections() {
+    return this.Http.get<Collection[]>(this.server + 'collection', { headers: this.authService.getHeaders() });
   }
 
   createCollection(collection: Collection) {
     return this.Http.post<Collection>(this.server + 'collection', collection, { headers: this.authService.getHeaders() });
+  }
+
+  updateCollection(collection: Collection) {
+    return this.Http.put<Collection>(this.server + 'collection/' + collection._id, collection, { headers: this.authService.getHeaders() });
+  }
+
+  deleteCollection(collection: Collection) {
+    return this.Http.delete(this.server + 'collection/' + collection._id, { headers: this.authService.getHeaders() });
   }
 }

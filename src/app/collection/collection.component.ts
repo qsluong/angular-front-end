@@ -15,10 +15,10 @@ export class CollectionComponent implements OnInit {
   ngOnInit() {
     this.collectionService.getCollections()
       .subscribe(response => {
-        this.collectionService.setCollections(response);
         this.collections = response;
+        this.collectionService.setCollections(response);
       });
-    this.collectionService.collectionChanged
+    this.collectionService.collectionsChanged
       .subscribe(changed => {
         this.collections = changed;
       });

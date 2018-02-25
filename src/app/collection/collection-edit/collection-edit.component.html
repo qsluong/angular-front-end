@@ -1,0 +1,11 @@
+<form [formGroup]="editCollectionForm" (ngSubmit)="onEdit()">
+  <div class="form-group">
+    <label>Name</label>
+    <input
+      class="form-control"
+      formControlName="name"
+      placeholder="Enter name for collection">
+  </div>
+  <button type="submit" class="btn btn-success">Save</button>
+  <button (click)="onCancel()" class="btn btn-danger">Cancel</button>
+</form>

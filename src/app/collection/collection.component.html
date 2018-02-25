@@ -29,12 +29,14 @@
   </div>
 </div>
 
-<div class="row">
+<div class="row" *ngIf="collections?.length > 0; else noCollections">
   <div class="col-md-12">
-    <div class="card-columns">
-      <app-collection-list
-        *ngFor="let col of collections"
-        [collection]="col"></app-collection-list>
-    </div>
+    <app-collection-list
+      *ngFor="let col of collections"
+      [collection]="col"></app-collection-list>
   </div>
 </div>
+
+<ng-template #noCollections>
+  <div>No collection found</div>
+</ng-template>
