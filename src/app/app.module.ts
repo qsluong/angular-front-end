@@ -28,6 +28,7 @@ import { AuthService } from './shared/services/auth.service';
 import { CardService } from './shared/services/card.service';
 import { CollectionService } from './shared/services/collection.service';
 import { UserService } from './shared/services/user.service';
+import { CardEditComponent } from './card/card-edit/card-edit.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { UserService } from './shared/services/user.service';
     CollectionDetailComponent,
     CardComponent,
     CardListComponent,
-    CardAddComponent
+    CardAddComponent,
+    CardEditComponent
   ],
   imports: [
     AppRoutingModule,

@@ -1,7 +1,12 @@
-<div class="card" style="cursor: pointer">
-  <div class="card-body bg-light">
-    <h5 class="card-title">{{ card.title }}</h5>
-    <p class="card-text">{{ card.definition }}</p>
-    <p class="card-text">{{ card.transliteration }}</p>
+<div class="list-group-item">
+  <div class="d-flex w-100 justify-content-between">
+    <h5 class="card-title">{{ card.title }} <small>{{ card.transliteration }}</small></h5>
+    <div class="btn-group btn-group-sm">
+      <button class="btn btn-primary" (click)="onEdit(card)">Edit</button>
+      <button class="btn btn-danger" (click)="onDelete(card)">Delete</button>
+    </div>
+  </div>
+  <div>
+    <p>{{ card.definition }}</p>
   </div>
 </div>

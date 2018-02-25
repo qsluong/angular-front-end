@@ -10,6 +10,7 @@ import { AccountDetailComponent } from './account/account-detail/account-detail.
 import { CollectionComponent } from './collection/collection.component';
 import { CollectionAddComponent } from './collection/collection-add/collection-add.component';
 import { CollectionDetailComponent } from './collection/collection-detail/collection-detail.component';
+import { CardEditComponent } from './card/card-edit/card-edit.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -26,7 +27,8 @@ const appRoutes: Routes = [
   { path: 'collection', component: CollectionComponent, canActivate: [AuthGuard], children: [
       { path: 'add', component: CollectionAddComponent },
     ]},
-  { path: 'collection/:name', component: CollectionDetailComponent, canActivate: [AuthGuard] }
+  { path: 'collection/:name', component: CollectionDetailComponent, canActivate: [AuthGuard] },
+  { path: 'collection/:name/edit', component: CardEditComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

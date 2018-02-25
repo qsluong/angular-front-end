@@ -17,13 +17,11 @@ export class CardComponent implements OnInit {
   ngOnInit() {
     this.cardService.getCards(this.collectionService.getCollection()._id)
       .subscribe(response => {
-        console.log(response);
         this.cards = response;
         this.cardService.setCards(response);
       });
     this.cardService.cardsChanged
       .subscribe(response => {
-        console.log(response);
         this.cards = response;
       });
   }

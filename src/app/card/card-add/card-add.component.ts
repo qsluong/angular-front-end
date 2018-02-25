@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { CardService } from '../../shared/services/card.service';
 import { Card } from '../../shared/models/card';
 import { CollectionService } from '../../shared/services/collection.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-card-add',
@@ -13,7 +14,8 @@ export class CardAddComponent implements OnInit {
   addCardForm: FormGroup;
   card;
 
-  constructor(private cardService: CardService,
+  constructor(private router: Router,
+              private cardService: CardService,
               private collectionService: CollectionService) { }
 
   ngOnInit() {

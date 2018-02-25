@@ -24,7 +24,7 @@
 
 <div class="row" *ngIf="cards?.length > 0; else noCards">
   <div class="col-md-12">
-    <div class="card-columns">
+    <div class="list-group">
       <app-card-list
         *ngFor="let c of cards"
         [card]="c"></app-card-list>

@@ -8,6 +8,7 @@ import { Subject } from 'rxjs/Subject';
 @Injectable()
 export class CardService {
   private server = environment.serverUrl;
+  private card: Card;
   private cards: Card[] = [];
 
   public cardsChanged: Subject<Card[]> = new Subject<Card[]>();
@@ -21,6 +22,22 @@ export class CardService {
 
   createCard(card: Card) {
     return this.Http.post<Card>(this.server + 'card', card, { headers: this.authService.getHeaders() });
+  }
+
+  getCard() {
+    return this.card;
+  }
+
+  setCard(card: Card) {
+    this.card = card;
+  }
+
+  updateCard(card: Card) {
+    return this.Http.put<Card>(this.server + 'card', card, { headers: this.authService.getHeaders() });
+  }
+
+  deleteCard(card: Card) {
+    return this.Http.delete(this.server + 'card/' + card._id, { headers: this.authService.getHeaders() });
   }
 
   setCards(cards: Card[]) {
