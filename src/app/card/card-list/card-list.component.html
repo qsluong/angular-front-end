@@ -1,12 +1,17 @@
-<div class="list-group-item">
+<div class="border-bottom">
   <div class="d-flex w-100 justify-content-between">
-    <h5 class="card-title">{{ card.title }} <small>{{ card.transliteration }}</small></h5>
-    <div class="btn-group btn-group-sm">
-      <button class="btn btn-primary" (click)="onEdit(card)">Edit</button>
-      <button class="btn btn-danger" (click)="onDelete(card)">Delete</button>
+    <div>
+      <h2 class="card-title">{{ card.title }} <small>{{ card.transliteration }}</small></h2>
+    </div>
+    <div>
+      <div class="btn-group btn-group-sm">
+        <button class="btn btn-primary" (click)="onEdit(card)">Edit</button>
+        <button class="btn btn-danger" (click)="onDelete(card)">Delete</button>
+      </div>
     </div>
   </div>
   <div>
-    <p>{{ card.definition }}</p>
+    {{ card.definition }}
   </div>
 </div>
+

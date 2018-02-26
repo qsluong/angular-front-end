@@ -31,7 +31,7 @@
 </div>
 
 <div class="row" *ngIf="collections?.length > 0; else noCollections">
-  <div class="col-md-12">
+  <div class="col-sm-12 col-md-5">
     <app-collection-list
       *ngFor="let col of collections"
       [collection]="col"></app-collection-list>
