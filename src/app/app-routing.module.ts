@@ -12,6 +12,7 @@ import { CollectionAddComponent } from './collection/collection-add/collection-a
 import { CollectionDetailComponent } from './collection/collection-detail/collection-detail.component';
 import { CardEditComponent } from './card/card-edit/card-edit.component';
 import { CollectionEditComponent } from './collection/collection-edit/collection-edit.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -21,6 +22,7 @@ const appRoutes: Routes = [
   { path: 'register', component: AuthenticationComponent, children: [
       { path: '', component: SignUpComponent },
     ]},
+  { path: 'home', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'account', component: AccountComponent, canActivate: [AuthGuard], children: [
       { path: '', component: AccountDetailComponent },
       { path: 'edit', component: AccountEditComponent }

@@ -1,13 +1,16 @@
-<div class="card">
-  <div class="card-body bg-light">
+<div class="card hover">
+  <div class="card-body">
     <div class="d-flex w-100 justify-content-between">
       <div (click)="onClick(collection)" style="cursor: pointer">
         <h5 class="card-title">{{ collection.name }}</h5>
       </div>
-      <div class="btn-group btn-group-sm">
-        <button class="btn btn-primary" (click)="onEdit(collection)">Edit</button>
-        <button class="btn btn-danger" (click)="onDelete(collection)">Delete</button>
+      <div class="hover">
+        test
       </div>
+      <!--<div class="btn-group btn-group-sm">-->
+        <!--<button class="btn btn-primary" (click)="onEdit(collection)">Edit</button>-->
+        <!--<button class="btn btn-danger" (click)="onDelete(collection)">Delete</button>-->
+      <!--</div>-->
     </div>
   </div>
 </div>
