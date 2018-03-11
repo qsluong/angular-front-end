@@ -4,6 +4,7 @@ import { Collection } from '../models/collection';
 import { environment } from '../../../environments/environment';
 import { AuthService } from './auth.service';
 import { Subject } from 'rxjs/Subject';
+import { User } from '../models/user';
 
 @Injectable()
 export class CollectionService {
@@ -35,8 +36,8 @@ export class CollectionService {
     this.collectionsChanged.next(this.collections.slice());
   }
 
-  getCollections() {
-    return this.Http.get<Collection[]>(this.server + 'collection', { headers: this.authService.getHeaders() });
+  getCollections(user: User) {
+    return this.Http.get<Collection[]>(this.server + 'collection/' + user.username, { headers: this.authService.getHeaders() });
   }
 
   createCollection(collection: Collection) {
