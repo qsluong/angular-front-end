@@ -33,7 +33,7 @@ export class SignInComponent implements OnInit {
           this.apiResponse = response;
           this.authService.setToken(this.apiResponse.token);
           this.userService.setCurrentUser(this.apiResponse.user);
-          this.router.navigate(['/account']);
+          this.router.navigate(['/home']);
           console.log(this.authService.isAuthenticated());
         }, error => {
           console.log(error);

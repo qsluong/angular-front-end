@@ -16,7 +16,7 @@ export class CardService {
   constructor(private Http: HttpClient,
               private authService: AuthService) {}
 
-  getCards(id: number) {
+  getCards(id: string) {
     return this.Http.get<Card[]>(this.server + 'card/' + id, { headers: this.authService.getHeaders() });
   }
 
@@ -37,7 +37,7 @@ export class CardService {
   }
 
   deleteCard(card: Card) {
-    return this.Http.delete(this.server + 'card/' + card._id, { headers: this.authService.getHeaders() });
+    return this.Http.delete(this.server + 'card/' + card.id, { headers: this.authService.getHeaders() });
   }
 
   setCards(cards: Card[]) {

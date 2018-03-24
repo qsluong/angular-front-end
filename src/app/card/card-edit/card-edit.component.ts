@@ -27,11 +27,11 @@ export class CardEditComponent implements OnInit {
 
   onEdit() {
     this.editedCard = {
-      _id: this.cardService.getCard()._id,
+      _id: this.cardService.getCard().id,
       title: this.editCardForm.value.title,
       definition: this.editCardForm.value.definition,
       transliteration: this.editCardForm.value.transliteration,
-      collectionId: this.collectionService.getCollection()._id
+      collectionId: this.collectionService.getCollection().id
     };
     this.cardService.updateCard(this.editedCard)
       .subscribe(

@@ -1,6 +1,7 @@
 <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark">
-  <a class="navbar-brand text-light">Project</a>
+  <a class="navbar-brand text-light" routerLink="/home">Project</a>
   <button
+    *ngIf="authService.isAuthenticated()"
     class="navbar-toggler"
     type="button"
     data-toggle="collapse"
@@ -24,24 +25,34 @@
     <ul
       *ngIf="authService.isAuthenticated()"
       class="navbar-nav ml-auto">
-      <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
-        <a class="nav-link" routerLink="/account">Signed in as <strong class="text-light">{{ user?.username }}</strong></a>
+      <li class="nav-item dropdown">
+        <a
+          class="nav-link dropdown-toggle"
+          style="cursor: pointer"
+          id="accountDropdownMenu"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false">Signed in as <strong class="text-light">{{ user?.username }}</strong></a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="accountDropdownMenu">
+          <a class="dropdown-item" routerLink="/account">User account</a>
+          <a class="dropdown-item" style="cursor: pointer" (click)="onSignOut()">Logout</a>
+        </div>
       </li>
-      <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
-        <a class="nav-link" style="cursor: pointer" (click)="onSignOut()">Log out</a>
-      </li>
+      <!--<li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">-->
+        <!--<a class="nav-link" style="cursor: pointer" (click)="onSignOut()">Log out</a>-->
+      <!--</li>-->
     </ul>
 
-    <ul
-      *ngIf="!authService.isAuthenticated()"
-      class="navbar-nav ml-auto">
-      <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
-        <a class="nav-link" routerLink="/register">Sign up</a>
-      </li>
-      <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
-        <a class="nav-link" routerLink="/login">Sign in</a>
-      </li>
-    </ul>
+    <!--<ul-->
+      <!--*ngIf="!authService.isAuthenticated()"-->
+      <!--class="navbar-nav ml-auto">-->
+      <!--<li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">-->
+        <!--<a class="nav-link" routerLink="/register">Sign up</a>-->
+      <!--</li>-->
+      <!--<li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">-->
+        <!--<a class="nav-link" routerLink="/login">Sign in</a>-->
+      <!--</li>-->
+    <!--</ul>-->
 
   </div>
 
