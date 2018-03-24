@@ -20,6 +20,7 @@ export class CollectionListComponent implements OnInit {
   }
 
   onClick(collection: Collection) {
+    console.log(collection);
     this.collectionService.setCollection(collection);
     this.router.navigate(['/collection', collection.name]);
   }

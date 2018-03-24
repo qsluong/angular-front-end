@@ -29,7 +29,7 @@ export class CardListComponent implements OnInit {
     this.cardService.deleteCard(card)
       .subscribe(response => {
         console.log(response);
-        this.cardService.getCards(this.collectionService.getCollection()._id)
+        this.cardService.getCards(this.collectionService.getCollection().id)
           .subscribe(newResponse => {
             this.cardService.setCards(newResponse);
           });

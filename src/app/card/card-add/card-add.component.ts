@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class CardAddComponent implements OnInit {
   addCardForm: FormGroup;
-  card;
+  card: Card = new Card();
 
   constructor(private router: Router,
               private cardService: CardService,
@@ -27,11 +27,13 @@ export class CardAddComponent implements OnInit {
   }
 
   onAdd() {
-    this.card = new Card(null,
-      this.addCardForm.value.title,
-      this.addCardForm.value.definition,
-      this.addCardForm.value.transliteration,
-      this.collectionService.getCollection()._id);
+    console.log(this.collectionService.getCollection().id);
+    this.card.title = this.addCardForm.value.title;
+    this.card.definition = this.addCardForm.value.definition;
+    this.card.transliteration = this.addCardForm.value.transliteration;
+    this.card.collectionId = this.collectionService.getCollection().id;
+
+    console.log(this.card);
     this.cardService.createCard(this.card)
       .subscribe(response => {
         console.log(response);

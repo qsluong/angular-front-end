@@ -14,8 +14,8 @@ export class CollectionService {
 
   public collectionsChanged: Subject<Collection[]> = new Subject<Collection[]>();
 
-  constructor(private authService: AuthService,
-              private Http: HttpClient) {
+  constructor(private Http: HttpClient,
+              private authService: AuthService) {
   }
 
   getCollection() {
@@ -45,10 +45,10 @@ export class CollectionService {
   }
 
   updateCollection(collection: Collection) {
-    return this.Http.put<Collection>(this.server + 'collection/' + collection._id, collection, { headers: this.authService.getHeaders() });
+    return this.Http.put<Collection>(this.server + 'collection/' + collection.id, collection, { headers: this.authService.getHeaders() });
   }
 
   deleteCollection(collection: Collection) {
-    return this.Http.delete(this.server + 'collection/' + collection._id, { headers: this.authService.getHeaders() });
+    return this.Http.delete(this.server + 'collection/' + collection.id, { headers: this.authService.getHeaders() });
   }
 }

@@ -26,7 +26,7 @@ export class CollectionEditComponent implements OnInit {
 
   onEdit() {
     this.editedCollection = {
-      _id: this.collectionService.getCollection()._id,
+      _id: this.collectionService.getCollection().id,
       name: this.editCollectionForm.value.name,
       createdByUser: this.userService.getCurrentUser().username
     };
