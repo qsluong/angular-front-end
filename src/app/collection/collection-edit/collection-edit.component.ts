@@ -4,6 +4,7 @@ import { CollectionService } from '../../shared/services/collection.service';
 import { Router } from '@angular/router';
 import { Collection } from '../../shared/models/collection';
 import { UserService } from '../../shared/services/user.service';
+import { User } from '../../shared/models/user';
 
 @Component({
   selector: 'app-collection-edit',
@@ -12,33 +13,32 @@ import { UserService } from '../../shared/services/user.service';
 })
 export class CollectionEditComponent implements OnInit {
   editCollectionForm: FormGroup;
-  editedCollection;
+  editedCollection: Collection;
 
-  constructor(private router: Router,
-              private collectionService: CollectionService,
-              private userService: UserService) { }
+  constructor(private userService: UserService,
+              private collectionService: CollectionService) { }
 
   ngOnInit() {
     this.editCollectionForm = new FormGroup({
-      'name': new FormControl(this.collectionService.getCollection().name)
+      name: new FormControl(this.collectionService.collection.name)
     });
   }
 
   onEdit() {
-    this.editedCollection = {
-      _id: this.collectionService.getCollection().id,
-      name: this.editCollectionForm.value.name,
-      createdByUser: this.userService.getCurrentUser().username
-    };
-    this.collectionService.updateCollection(this.editedCollection)
-      .subscribe(response => {
-        console.log(response);
-        this.router.navigate(['/collection']);
-      });
-  }
+    console.log('Iets wordt gewijzigd');
+    this.editedCollection = new Collection();
+    this.editedCollection.id = this.collectionService.collection.id;
+    this.editedCollection.name = this.editCollectionForm.value.name;
+    this.editedCollection.createdByUser = this.userService.currentUser.username;
 
-  onCancel() {
-    this.router.navigate(['/collection']);
+    console.log(this.editedCollection);
+    this.collectionService.updateCollection(this.editedCollection)
+      .subscribe(update => {
+        this.collectionService.getCollections(this.userService.currentUser)
+          .subscribe(updated => {
+            this.collectionService.collections = updated;
+          });
+      });
   }
 
 }

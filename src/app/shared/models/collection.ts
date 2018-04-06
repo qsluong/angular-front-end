@@ -4,28 +4,27 @@ export class Collection {
   private _name: string;
   private _createdByUser: string;
 
-  public get id() {
+  get id() {
     return this._id;
   }
 
-  public set id(newId: string) {
+  set id(newId: string) {
     this._id = newId;
   }
 
-  public get name() {
+  get name() {
     return this._name;
   }
 
-  public set name(newName: string) {
+  set name(newName: string) {
     this._name = newName;
   }
 
-  public get createdByUser() {
+  get createdByUser() {
     return this._createdByUser;
   }
 
-  public set createdByUser(creator: string) {
+  set createdByUser(creator: string) {
     this._createdByUser = creator;
   }
-
 }

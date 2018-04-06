@@ -17,11 +17,10 @@ export class CardListComponent implements OnInit {
               private cardService: CardService,
               private collectionService: CollectionService) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   onEdit(card: Card) {
-    this.cardService.setCard(card);
+    this.cardService.card = card;
     this.router.navigate(['edit'], { relativeTo: this.route });
   }
 
@@ -29,9 +28,9 @@ export class CardListComponent implements OnInit {
     this.cardService.deleteCard(card)
       .subscribe(response => {
         console.log(response);
-        this.cardService.getCards(this.collectionService.getCollection().id)
+        this.cardService.getCards(this.collectionService.collection.id)
           .subscribe(newResponse => {
-            this.cardService.setCards(newResponse);
+            this.cardService.cards =  newResponse;
           });
       });
   }

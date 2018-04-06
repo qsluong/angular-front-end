@@ -9,20 +9,14 @@ import { UserService } from '../shared/services/user.service';
   styleUrls: ['./collection.component.css']
 })
 export class CollectionComponent implements OnInit {
-  collections: Collection[];
 
   constructor(private userService: UserService,
               private collectionService: CollectionService) { }
 
   ngOnInit() {
-    this.collectionService.getCollections(this.userService.getCurrentUser())
+    this.collectionService.getCollections(this.userService.currentUser)
       .subscribe(response => {
-        this.collections = response;
-        this.collectionService.setCollections(response);
-      });
-    this.collectionService.collectionsChanged
-      .subscribe(changed => {
-        this.collections = changed;
+        this.collectionService.collections = response;
       });
   }
 

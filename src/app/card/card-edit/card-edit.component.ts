@@ -19,30 +19,30 @@ export class CardEditComponent implements OnInit {
 
   ngOnInit() {
     this.editCardForm = new FormGroup({
-      title: new FormControl(this.cardService.getCard().title),
-      definition: new FormControl(this.cardService.getCard().definition),
-      transliteration: new FormControl(this.cardService.getCard().transliteration)
+      title: new FormControl(this.cardService.card.title),
+      definition: new FormControl(this.cardService.card.definition),
+      transliteration: new FormControl(this.cardService.card.transliteration)
     });
   }
 
   onEdit() {
     this.editedCard = {
-      _id: this.cardService.getCard().id,
+      _id: this.cardService.card.id,
       title: this.editCardForm.value.title,
       definition: this.editCardForm.value.definition,
       transliteration: this.editCardForm.value.transliteration,
-      collectionId: this.collectionService.getCollection().id
+      collectionId: this.collectionService.collection.id
     };
     this.cardService.updateCard(this.editedCard)
       .subscribe(
         response => console.log(response),
         error => console.log(error),
-        () => this.router.navigate(['/collection/' + this.collectionService.getCollection().name])
+        () => this.router.navigate(['/collection/' + this.collectionService.collection.name])
       );
   }
 
   onCancel() {
-    this.router.navigate(['/collection/' + this.collectionService.getCollection().name]);
+    this.router.navigate(['/collection/' + this.collectionService.collection.name]);
   }
 
 }

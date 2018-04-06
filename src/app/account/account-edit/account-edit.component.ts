@@ -19,7 +19,7 @@ export class AccountEditComponent implements OnInit {
   ngOnInit() {
     this.userService.userChanged
       .subscribe(user => this.editUser = user);
-    this.editUser = this.userService.getCurrentUser();
+    this.editUser = this.userService.currentUser;
     this.initForm();
   }
 
@@ -35,7 +35,7 @@ export class AccountEditComponent implements OnInit {
     console.log(this.editForm);
     this.userService.updateUser(this.editUser.username, this.editForm.value)
       .subscribe(response => {
-        this.userService.setCurrentUser(response);
+        this.userService.currentUser = response;
         this.router.navigate(['/account']);
       });
   }

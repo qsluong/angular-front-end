@@ -6,31 +6,31 @@ export class User {
   private _username: string;
   private _password: string;
 
-  public get firstname() {
+  get firstname(): string {
     return this._firstname;
   }
 
-  public set firstname(newFirstname: string) {
+  set firstname(newFirstname: string) {
     this._firstname = newFirstname;
   }
 
-  public get lastname() {
+  get lastname(): string {
     return this._lastname;
   }
 
-  public set lastname(newLastname: string) {
+  set lastname(newLastname: string) {
     this._lastname = newLastname;
   }
 
-  public get email() {
+  get email(): string {
     return this._email;
   }
 
-  public set email(newEmail: string) {
+  set email(newEmail: string) {
     this._email = newEmail;
   }
 
-  public get username() {
+  get username(): string {
     return this._username;
   }
 }

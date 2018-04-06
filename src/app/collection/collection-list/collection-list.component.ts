@@ -11,34 +11,23 @@ import { UserService } from '../../shared/services/user.service';
 })
 export class CollectionListComponent implements OnInit {
   @Input() collection: Collection;
+  collections: Collection[];
 
   constructor(private router: Router,
               private userService: UserService,
               private collectionService: CollectionService) { }
 
   ngOnInit() {
-  }
-
-  onClick(collection: Collection) {
-    console.log(collection);
-    this.collectionService.setCollection(collection);
-    this.router.navigate(['/collection', collection.name]);
+    this.collectionService.collectionsChanged
+      .subscribe(changes => {
+        this.collections = changes;
+      });
+    this.collections = this.collectionService.collections;
   }
 
   onEdit(collection: Collection) {
-    this.collectionService.setCollection(collection);
+    this.collectionService.collection = collection;
     this.router.navigate(['/collection', 'edit']);
-  }
-
-  onDelete(collection: Collection) {
-    this.collectionService.deleteCollection(collection)
-      .subscribe(response => {
-        console.log(response);
-        this.collectionService.getCollections(this.userService.getCurrentUser())
-          .subscribe(newResponse => {
-            this.collectionService.setCollections(newResponse);
-          });
-      });
   }
 
 }

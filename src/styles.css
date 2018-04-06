@@ -4,18 +4,63 @@ body {
   padding-top: 65px;
 }
 
-div.card.hover:hover {
+.content-block {
+  display: flex;
+  align-items: center;
+}
+
+.content-block:hover {
   transition: all 0.5s ease;
   color: white;
-  background-color: #7db8ff;
+  background-color: #4590ff;
+  cursor: pointer;
 }
 
-.hover {
+.list-group-item.collection-list {
+  padding: 0;
+}
+
+.collection-item-title {
+  display: flex;
+  font-size: 1.5rem;
+  padding: .75rem;
+  width: 100%;
+  margin: 0;
+}
+
+.content-hover {
+  color: white;
   display: none;
+  right: 5px;
+  justify-content: center;
+  align-items: center;
 }
 
-.card:hover .hover {
-  float: right;
-  display: block;
+.content-block:hover .content-hover {
+  position: absolute;
+  display: flex;
+  z-index: 2;
 }
 
+.content-hover-item {
+  margin-left: 0.2rem;
+  margin-right: 0.2rem;
+  justify-content: center;
+}
+
+.content-hover-item:hover {
+  cursor: pointer;
+  font-size: larger;
+  transition: all 0.5s ease;
+}
+
+@media only screen and (max-width: 600px){
+  .content-hover {
+    display: flex;
+    color: black;
+  }
+
+  .content-hover:hover {
+    color: white;
+  }
+}

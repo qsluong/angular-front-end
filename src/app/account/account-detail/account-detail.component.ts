@@ -10,14 +10,14 @@ import { User } from '../../shared/models/user';
 })
 export class AccountDetailComponent implements OnInit {
   account: User;
+  fullname: string;
 
   constructor(private router: Router,
               private userService: UserService) { }
 
   ngOnInit() {
-    this.userService.userChanged
-      .subscribe(user => this.account = user);
-    this.account = this.userService.getCurrentUser();
+    this.account = this.userService.currentUser;
+    this.fullname = this.account.firstname + ' ' + this.account.lastname;
   }
 
   onEdit() {

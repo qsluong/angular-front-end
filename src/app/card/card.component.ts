@@ -16,7 +16,7 @@ export class CardComponent implements OnInit {
               private collectionService: CollectionService) { }
 
   ngOnInit() {
-    this.id = this.collectionService.getCollection().id;
+    this.id = this.collectionService.collection.id;
     this.cardService.getCards(this.id)
       .subscribe(response => {
         console.log(response);

@@ -8,26 +8,26 @@ import { AuthService } from './auth.service';
 @Injectable()
 export class UserService {
   private server = environment.serverUrl;
-  private currentUser: User;
+  private _currentUser: User;
   userChanged: Subject<User> = new Subject<User>();
 
   constructor(private authService: AuthService,
-              private Http: HttpClient) {}
+              private Http: HttpClient) { }
 
-  getCurrentUser() {
-    return this.currentUser;
+  get currentUser(): User {
+    return this._currentUser;
   }
 
-  removeUser() {
-    this.currentUser = null;
+  set currentUser(user: User) {
+    this._currentUser = user;
+    this.userChanged.next(this._currentUser);
   }
 
-  setCurrentUser(user: User) {
-    this.currentUser = user;
-    this.userChanged.next(this.currentUser);
+  logoutUser() {
+    this._currentUser = null;
   }
 
   updateUser(username, edit) {
-    return this.Http.put<User>(this.server + 'account/' + username, edit, { headers: this.authService.getHeaders() });
+    return this.Http.put<User>(this.server + 'account/' + username, edit, { headers: this.authService.headers });
   }
 }

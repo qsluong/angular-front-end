@@ -31,13 +31,11 @@ export class SignInComponent implements OnInit {
       .subscribe(
         response => {
           this.apiResponse = response;
-          this.authService.setToken(this.apiResponse.token);
-          this.userService.setCurrentUser(this.apiResponse.user);
+          this.authService.token = this.apiResponse.token;
+          this.userService.currentUser = this.apiResponse.user;
           this.router.navigate(['/home']);
-          console.log(this.authService.isAuthenticated());
         }, error => {
-          console.log(error);
-          if (error.status === 0 ) console.log('Server is not responding');
+          if (error.status === 0) { console.log('Server is not responding'); }
         });
   }
 

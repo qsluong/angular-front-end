@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CollectionService } from '../../shared/services/collection.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { UserService } from '../../shared/services/user.service';
+import { Collection } from '../../shared/models/collection';
 
 @Component({
   selector: 'app-collection-add',
@@ -10,6 +11,7 @@ import { UserService } from '../../shared/services/user.service';
 })
 export class CollectionAddComponent implements OnInit {
   addCollectionForm: FormGroup;
+  addedCollection: Collection;
   addResponse;
 
   constructor(private userService: UserService,
@@ -24,12 +26,17 @@ export class CollectionAddComponent implements OnInit {
   onAdd() {
     this.addResponse = {
       name: this.addCollectionForm.value.name,
-      createdByUser: this.userService.getCurrentUser().username
+      createdByUser: this.userService.currentUser.username
     };
     this.collectionService.createCollection(this.addResponse)
       .subscribe(response => {
         console.log(response);
-        this.collectionService.updateCollections(response);
+        this.addResponse = response;
+        this.addedCollection = new Collection();
+        this.addedCollection.id = this.addResponse._id;
+        this.addedCollection.name = this.addResponse.name;
+        this.addedCollection.createdByUser = this.addResponse.createdByUser;
+        this.collectionService.updateCollections(this.addedCollection);
         this.addCollectionForm.reset();
       });
   }

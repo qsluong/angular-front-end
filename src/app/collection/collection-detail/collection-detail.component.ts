@@ -15,11 +15,19 @@ export class CollectionDetailComponent implements OnInit {
               private collectionService: CollectionService) { }
 
   ngOnInit() {
-    this.collection = this.collectionService.getCollection();
+    this.collectionService.collectionChanged
+      .subscribe(collection => {
+        this.collection = collection;
+      });
+    this.collection = this.collectionService.collection;
   }
 
   onBack() {
     this.router.navigate(['/collection']);
+  }
+
+  onAdd() {
+    this.router.navigate([''])
   }
 
 }

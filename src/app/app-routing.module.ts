@@ -13,6 +13,8 @@ import { CollectionDetailComponent } from './collection/collection-detail/collec
 import { CardEditComponent } from './card/card-edit/card-edit.component';
 import { CollectionEditComponent } from './collection/collection-edit/collection-edit.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { CollectionListComponent } from './collection/collection-list/collection-list.component';
+import { CollectionItemComponent } from './collection/collection-item/collection-item.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -29,9 +31,9 @@ const appRoutes: Routes = [
     ]},
   { path: 'collection', component: CollectionComponent, canActivate: [AuthGuard], children: [
       { path: 'add', component: CollectionAddComponent },
+      { path: 'edit', component: CollectionEditComponent },
+      { path: ':name', component: CollectionDetailComponent }
     ]},
-  { path: 'collection/edit', component: CollectionEditComponent, canActivate: [AuthGuard] },
-  { path: 'collection/:name', component: CollectionDetailComponent, canActivate: [AuthGuard] },
   { path: 'collection/:name/edit', component: CardEditComponent, canActivate: [AuthGuard] }
 ];
 

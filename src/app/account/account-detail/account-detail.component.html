@@ -2,9 +2,11 @@
 <hr>
 <div class="card">
   <div class="card-header">
-    <h3 class="card-title">{{ account?.firstname }} {{ account?.lastname }}</h3>
+    <h3 class="card-title">{{ fullname }}</h3>
   </div>
   <div class="card-body">
+    <label>Fullname</label>
+    <p>{{ fullname }}</p>
     <label>Email</label>
     <p>{{ account?.email }}</p>
     <label>Username</label>
