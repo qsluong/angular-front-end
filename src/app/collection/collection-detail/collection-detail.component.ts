@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Collection } from '../../shared/models/collection';
 import { CollectionService } from '../../shared/services/collection.service';
 import { Router } from '@angular/router';
+import { CardService } from '../../shared/services/card.service';
 
 @Component({
   selector: 'app-collection-detail',
@@ -12,6 +13,7 @@ export class CollectionDetailComponent implements OnInit {
   collection: Collection;
 
   constructor(private router: Router,
+              private cardService: CardService,
               private collectionService: CollectionService) { }
 
   ngOnInit() {
@@ -27,7 +29,8 @@ export class CollectionDetailComponent implements OnInit {
   }
 
   onAdd() {
-    this.router.navigate([''])
+    console.log('Add: ' + this.collection.name);
+    this.router.navigate(['/collection', this.collectionService.collection.name, 'add'])
   }
 
 }

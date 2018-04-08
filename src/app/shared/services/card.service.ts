@@ -51,11 +51,11 @@ export class CardService {
     return this.Http.post<Card>(this.server + 'card', card, { headers: this.authService.headers });
   }
 
-  updateCard(card: Card) {
+  updateCard(card) {
     return this.Http.put<Card>(this.server + 'card', card, { headers: this.authService.headers });
   }
 
-  deleteCard(card: Card) {
-    return this.Http.delete(this.server + 'card/' + card.id, { headers: this.authService.headers });
+  deleteCard(card) {
+    return this.Http.delete(this.server + 'card/' + card._id, { headers: this.authService.headers });
   }
 }

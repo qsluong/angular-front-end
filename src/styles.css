@@ -4,13 +4,17 @@ body {
   padding-top: 65px;
 }
 
+.button-class {
+  vertical-align: middle;
+}
+
 .content-block {
   display: flex;
   align-items: center;
 }
 
 .content-block:hover {
-  transition: all 0.5s ease;
+  transition: all 0.2s ease;
   color: white;
   background-color: #4590ff;
   cursor: pointer;
@@ -51,7 +55,7 @@ body {
 .content-hover-item:hover {
   cursor: pointer;
   font-size: larger;
-  transition: all 0.5s ease;
+  transition: all 0.2s ease;
 }
 
 @media only screen and (max-width: 600px){

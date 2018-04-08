@@ -1,13 +1,5 @@
-<div class="row" *ngIf="cards?.length > 0; else noCards">
-  <div class="col-md-12">
-    <ul class="list-group list-group-flush">
-      <app-card-list
-        *ngFor="let c of cards"
-        [card]="c"></app-card-list>
-    </ul>
+<div class="row">
+  <div class="col-sm-12 col-md-12">
+    <router-outlet></router-outlet>
   </div>
 </div>
-
-<ng-template #noCards>
-  <div>No cards found</div>
-</ng-template>

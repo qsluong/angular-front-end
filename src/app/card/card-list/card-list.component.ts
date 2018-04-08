@@ -10,29 +10,20 @@ import { CollectionService } from '../../shared/services/collection.service';
   styleUrls: ['./card-list.component.css']
 })
 export class CardListComponent implements OnInit {
-  @Input() card: Card;
+  card: Card;
+  cards: Card[];
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private cardService: CardService,
-              private collectionService: CollectionService) { }
+              private cardService: CardService) { }
 
-  ngOnInit() { }
-
-  onEdit(card: Card) {
-    this.cardService.card = card;
-    this.router.navigate(['edit'], { relativeTo: this.route });
-  }
-
-  onDelete(card: Card) {
-    this.cardService.deleteCard(card)
-      .subscribe(response => {
-        console.log(response);
-        this.cardService.getCards(this.collectionService.collection.id)
-          .subscribe(newResponse => {
-            this.cardService.cards =  newResponse;
-          });
+  ngOnInit() {
+    // Update cards after creating, updating or deleting
+    this.cardService.cardsChanged
+      .subscribe(changes => {
+        this.cards = changes;
       });
+    this.cards = this.cardService.cards;
   }
 
 }

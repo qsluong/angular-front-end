@@ -5,6 +5,9 @@
       class="form-control"
       formControlName="title"
       placeholder="Enter title for collection">
+    <small
+      *ngIf="!addCardForm.get('title').valid && addCardForm.get('title').touched"
+      class="form-text text-muted">Please enter title</small>
   </div>
   <div class="form-group">
     <label>Definition</label>
@@ -12,6 +15,9 @@
       class="form-control"
       formControlName="definition"
       placeholder="Enter definition for collection">
+    <small
+      *ngIf="!addCardForm.get('definition').valid && addCardForm.get('definition').touched"
+      class="form-text text-muted">Please enter definition</small>
   </div>
   <div class="form-group">
     <label>Transliteration</label>
@@ -19,7 +25,10 @@
       class="form-control"
       formControlName="transliteration"
       placeholder="Enter transliteration for collection">
+    <small
+      *ngIf="!addCardForm.get('transliteration').valid && addCardForm.get('transliteration').touched"
+      class="form-text text-muted">Please enter translation</small>
   </div>
   <button type="submit" class="btn btn-success">Save</button>
-  <button type="reset" class="btn btn-danger">Cancel</button>
+  <button type="reset" (click)="onCancel()" class="btn btn-danger">Cancel</button>
 </form>

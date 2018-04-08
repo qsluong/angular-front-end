@@ -11,7 +11,7 @@ import { UserService } from '../../shared/services/user.service';
 })
 export class CollectionItemComponent implements OnInit {
   @Input() collection: Collection;
-  editMode: boolean;
+  editMode = false;
 
   constructor(private router: Router,
               private route: ActivatedRoute,
@@ -29,7 +29,7 @@ export class CollectionItemComponent implements OnInit {
 
   onEdit(collection: Collection) {
     console.log('Edit ' + '"' + collection.name + '"');
-    this.collectionService.collection = collection;
+    // this.collectionService.collection = collection;
     this.editMode = true;
     // this.router.navigate(['edit'], { relativeTo: this.route });
   }

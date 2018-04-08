@@ -1,6 +1,6 @@
 export class Card {
 
-  private _id: number;
+  private _id: string;
   private _title: string;
   private _definition: string;
   private _transliteration: string;
@@ -10,7 +10,7 @@ export class Card {
     return this._id;
   }
 
-  set id(newId: number) {
+  set id(newId: string) {
     this._id = newId;
   }
 

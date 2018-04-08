@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { CardService } from '../../shared/services/card.service';
 import { CollectionService } from '../../shared/services/collection.service';
 import { Router } from '@angular/router';
+import { Card } from '../../shared/models/card';
 
 @Component({
   selector: 'app-card-edit',
@@ -11,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class CardEditComponent implements OnInit {
   editCardForm: FormGroup;
-  editedCard;
+  card: Card;
 
   constructor(private router: Router,
               private cardService: CardService,
@@ -26,14 +27,13 @@ export class CardEditComponent implements OnInit {
   }
 
   onEdit() {
-    this.editedCard = {
-      _id: this.cardService.card.id,
-      title: this.editCardForm.value.title,
-      definition: this.editCardForm.value.definition,
-      transliteration: this.editCardForm.value.transliteration,
-      collectionId: this.collectionService.collection.id
-    };
-    this.cardService.updateCard(this.editedCard)
+    this.card = this.cardService.card;
+
+    this.card.title = this.editCardForm.value.title;
+    this.card.definition = this.editCardForm.value.definition;
+    this.card.transliteration = this.editCardForm.value.transliteration;
+
+    this.cardService.updateCard(this.card)
       .subscribe(
         response => console.log(response),
         error => console.log(error),

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CardService } from '../../shared/services/card.service';
 import { Card } from '../../shared/models/card';
 import { CollectionService } from '../../shared/services/collection.service';
@@ -20,20 +20,33 @@ export class CardAddComponent implements OnInit {
 
   ngOnInit() {
     this.addCardForm = new FormGroup({
-      title: new FormControl(null),
-      definition: new FormControl(null),
-      transliteration: new FormControl(null)
+      title: new FormControl(null, [Validators.required]),
+      definition: new FormControl(null, [Validators.required]),
+      transliteration: new FormControl(null, [Validators.required])
     });
   }
 
   onAdd() {
-    console.log(this.card);
-    this.cardService.createCard(this.card)
-      .subscribe(response => {
-        console.log(response);
-        this.cardService.updateCards(response);
-        this.addCardForm.reset();
-      });
+    if (this.addCardForm.valid) {
+      this.card = new Card();
+      this.card.id = null;
+      this.card.title = this.addCardForm.value.title;
+      this.card.definition = this.addCardForm.value.definition;
+      this.card.transliteration = this.addCardForm.value.transliteration;
+      this.card.collectionId = this.collectionService.collection.id;
+      console.log(this.card);
+      this.cardService.createCard(this.card)
+        .subscribe(response => {
+          console.log(response);
+          this.cardService.updateCards(response);
+          this.addCardForm.reset();
+          this.router.navigate(['collection', this.collectionService.collection.name ]);
+        });
+    }
+  }
+
+  onCancel() {
+    this.router.navigate(['collection', this.collectionService.collection.name ]);
   }
 
 }

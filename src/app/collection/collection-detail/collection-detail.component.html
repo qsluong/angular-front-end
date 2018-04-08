@@ -1,13 +1,17 @@
 <div class="row align-items-center">
   <div class="col">
-    <button class="btn btn-dark" (click)="onBack()">Back</button>
+    <button class="btn btn-dark float-left" (click)="onBack()"><span class="oi oi-arrow-thick-left"></span></button>
   </div>
   <div class="col">
     <h1 class="text-center">{{ collection.name }}</h1>
   </div>
   <div class="col">
+    <button class="btn btn-primary float-right" (click)="onAdd()"><span class="oi oi-plus"></span></button>
   </div>
-  <div class="col">
-    <button class="btn btn-success" (click)="onAdd()">Add</button>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <app-card></app-card>
   </div>
 </div>

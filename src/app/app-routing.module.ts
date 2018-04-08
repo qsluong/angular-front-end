@@ -15,9 +15,11 @@ import { CollectionEditComponent } from './collection/collection-edit/collection
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CollectionListComponent } from './collection/collection-list/collection-list.component';
 import { CollectionItemComponent } from './collection/collection-item/collection-item.component';
+import { CardAddComponent } from './card/card-add/card-add.component';
+import { CardListComponent } from './card/card-list/card-list.component';
 
 const appRoutes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full'},
+  { path: '', redirectTo: 'collection', pathMatch: 'full'},
   { path: 'login', component: AuthenticationComponent, children: [
       { path: '', component: SignInComponent },
     ]},
@@ -32,9 +34,12 @@ const appRoutes: Routes = [
   { path: 'collection', component: CollectionComponent, canActivate: [AuthGuard], children: [
       { path: 'add', component: CollectionAddComponent },
       { path: 'edit', component: CollectionEditComponent },
-      { path: ':name', component: CollectionDetailComponent }
+      { path: ':name', component: CollectionDetailComponent, children: [
+          { path: '', component: CardListComponent },
+          { path: 'add', component: CardAddComponent },
+          { path: ':card/edit', component: CardEditComponent }
+        ]},
     ]},
-  { path: 'collection/:name/edit', component: CardEditComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

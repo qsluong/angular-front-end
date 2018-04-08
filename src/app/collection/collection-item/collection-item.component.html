@@ -1,21 +1,12 @@
-<div class="content-block" *ngIf="!editMode; else editNameMode">
+<div class="content-block">
   <h1
     class="collection-item-title"
     (click)="onClick(collection)">
     {{ collection.name }}
   </h1>
   <div class="content-hover">
-    <span class="content-hover-item oi oi-pencil" (click)="onEdit(collection)"></span>
+    <!--<span appInlineEdit class="content-hover-item oi oi-pencil" (click)="onEdit(collection)"></span>-->
+    <!--<span class="content-hover-item oi oi-delete" (click)="onDelete(collection)"></span>-->
     <span class="content-hover-item oi oi-delete" (click)="onDelete(collection)"></span>
   </div>
 </div>
-
-<ng-template #editNameMode>
-  <div class="content-block">
-    <input [value]="[collection.name]">
-    <div class="content-hover">
-      <span class="content-hover-item oi oi-check" (click)="onEdit(collection)"></span>
-      <span class="content-hover-item oi oi-delete" (click)="onDelete(collection)"></span>
-    </div>
-  </div>
-</ng-template>

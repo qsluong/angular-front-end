@@ -33,6 +33,11 @@ import { CollectionEditComponent } from './collection/collection-edit/collection
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CollectionItemComponent } from './collection/collection-item/collection-item.component';
 
+// Custom directives
+import { ContentEditableDirective } from './shared/directives/content.editable.directive';
+import { InlineEditDirective } from './shared/directives/inline-edit.directive';
+import { CardItemComponent } from './card/card-item/card-item.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +58,10 @@ import { CollectionItemComponent } from './collection/collection-item/collection
     CardEditComponent,
     CollectionEditComponent,
     DashboardComponent,
-    CollectionItemComponent
+    CollectionItemComponent,
+    ContentEditableDirective,
+    InlineEditDirective,
+    CardItemComponent
   ],
   imports: [
     AppRoutingModule,

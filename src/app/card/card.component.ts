@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {Card} from '../shared/models/card';
 import { CardService } from '../shared/services/card.service';
 import { CollectionService } from '../shared/services/collection.service';
 
@@ -9,23 +8,21 @@ import { CollectionService } from '../shared/services/collection.service';
   styleUrls: ['./card.component.css']
 })
 export class CardComponent implements OnInit {
-  cards: Card[] = [];
-  id: string;
 
   constructor(private cardService: CardService,
               private collectionService: CollectionService) { }
 
   ngOnInit() {
-    this.id = this.collectionService.collection.id;
-    this.cardService.getCards(this.id)
-      .subscribe(response => {
-        console.log(response);
-        this.cards = response;
-        this.cardService.setCards(response);
+    this.cardService.getCards(this.collectionService.collection.id)
+      .subscribe(cards => {
+        this.cardService.cards = cards;
       });
-    this.cardService.cardsChanged
-      .subscribe(response => {
-        this.cards = response;
+    this.collectionService.collectionChanged
+      .subscribe(collection => {
+        this.cardService.getCards(collection.id)
+          .subscribe(response => {
+            this.cardService.cards = response;
+          });
       });
   }
 

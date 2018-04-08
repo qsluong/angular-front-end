@@ -1,17 +1,13 @@
-<div class="border-bottom">
-  <div class="d-flex w-100 justify-content-between">
-    <div>
-      <h2 class="card-title">{{ card.title }} <small>{{ card.transliteration }}</small></h2>
-    </div>
-    <div>
-      <div class="btn-group btn-group-sm">
-        <button class="btn btn-primary" (click)="onEdit(card)">Edit</button>
-        <button class="btn btn-danger" (click)="onDelete(card)">Delete</button>
-      </div>
-    </div>
-  </div>
-  <div>
-    {{ card.definition }}
+<div class="row" *ngIf="cards?.length > 0; else noCards">
+  <div class="col-md-12">
+    <ul class="list-group list-group-flush">
+      <app-card-item
+        *ngFor="let c of cards"
+        [card]="c"></app-card-item>
+    </ul>
   </div>
 </div>
 
+<ng-template #noCards>
+  <div>No cards found</div>
+</ng-template>
